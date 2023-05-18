@@ -1,5 +1,6 @@
 
 
+import { Link } from 'react-router-dom';
 import logo from '../../../../public/toycarsbliss.png'
 const Navbar = () => {
     return (
@@ -26,7 +27,9 @@ const Navbar = () => {
                         </ul>
                     </div>
 
-                    <img src={logo} alt='logo' />
+                    <Link to='/' className="btn btn-ghost normal-case text-xl">
+                        <img src={logo} alt='logo' />
+                    </Link>
 
                 </div>
                 <div className="navbar-center hidden lg:flex">
