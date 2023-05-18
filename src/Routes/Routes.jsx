@@ -6,11 +6,13 @@ import Blogs from "../components/Blogs/Blogs";
 import AddaToy from "../components/AddaToy/AddaToy";
 import Login from "../components/Login/Login";
 import SignUp from "../components/SignUp/SignUp";
+import ErrorPage from "../components/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Main />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',

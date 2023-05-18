@@ -1,24 +1,78 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import 'react-tabs/style/react-tabs.css';
-
+import axios from "axios";
+import "react-tabs/style/react-tabs.css";
 
 const Categories = () => {
     const [tabIndex, setTabIndex] = useState(0);
+    const [toysData, setToysData] = useState([]);
+
+    useEffect(() => {
+        fetchToysData();
+    }, []);
+
+    const fetchToysData = async () => {
+        try {
+            const response = await axios.get("http://localhost:5000/toys");
+            setToysData(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const renderToysByCategory = (category) => {
+        const categoryToys = toysData.filter((toy) => toy.category === category);
+        const chunks = chunkArray(categoryToys, 4); // Split the array into chunks of size 3
+
+        return chunks.map((chunk, index) => (
+            <TabPanel key={index}>
+                <div className="flex flex-wrap justify-center">
+                    {chunk.map((toy) => (
+                        <div key={toy.id} className="flex flex-col items-center m-4">
+                            <img
+                                src={toy.image}
+                                alt={toy.toy_name}
+                                className="w-40 h-40 mb-4"
+                            />
+                            <p className="font-bold text-lg">{toy.toy_name}</p>
+                            <p className="text-gray-500">${toy.price}</p>
+                            <p className="text-gray-500">Rating: {toy.rating}</p>
+                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+                                View Details
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </TabPanel>
+        ));
+    };
+
+    // Helper function to chunk an array into smaller arrays of a given size
+    const chunkArray = (arr, size) => {
+        const chunkedArray = [];
+        for (let i = 0; i < arr.length; i += size) {
+            chunkedArray.push(arr.slice(i, i + size));
+        }
+        return chunkedArray;
+    };
 
     return (
-
         <div>
-            <h2 className="text-5xl text-center font-bold mb-10">Shop By Categories</h2>
-            <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)} className="text-center">
-                <TabList>
-                    <Tab>Toy Cars</Tab>
-                    <Tab>Toy Track</Tab>
-                    <Tab>Sports Car</Tab>
-                </TabList>
-                <TabPanel></TabPanel>
-                <TabPanel></TabPanel>
-            </Tabs>
+            <h2 className="text-5xl text-center font-bold mb-10">
+                Shop By Categories
+            </h2>
+            {toysData.length > 0 && (
+                <Tabs selectedIndex={tabIndex} onSelect={setTabIndex}>
+                    <TabList className="flex justify-center mb-4 bg-[#45313A] text-white">
+                        <Tab>Cars</Tab>
+                        <Tab>Trucks</Tab>
+                        <Tab>Vehicles</Tab>
+                    </TabList>
+                    {renderToysByCategory("Cars")}
+                    {renderToysByCategory("Trucks")}
+                    {renderToysByCategory("Vehicles")}
+                </Tabs>
+            )}
         </div>
     );
 };
