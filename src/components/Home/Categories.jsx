@@ -9,7 +9,7 @@ const Categories = () => {
     return (
 
         <div>
-            <h2 className="text-3xl text-center font-bold mb-10">Shop By Categories</h2>
+            <h2 className="text-5xl text-center font-bold mb-10">Shop By Categories</h2>
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)} className="text-center">
                 <TabList>
                     <Tab>Toy Cars</Tab>
