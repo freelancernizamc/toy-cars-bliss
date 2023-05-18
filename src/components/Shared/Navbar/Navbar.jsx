@@ -2,13 +2,34 @@
 
 import { Link } from 'react-router-dom';
 import logo from '../../../../public/toycarsbliss.png'
+import { useContext } from 'react';
+import { AuthContext } from '../../../Providers/AuthProviders';
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+
+            })
+            .catch(error => console.log(error))
+    }
+
     const navItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/alltoys'>All Toys</Link></li>
         <li><Link to='/blogs'>Blogs</Link></li>
-        <li><Link to='/addatoy'>Add A Toy</Link></li>
+
+        {user?.email ? <>
+            <li><Link to='/addatoy'>Add A Toy</Link></li>
+            <li><Link to='/mytoys'>My Toys</Link></li>
+            <li><button onClick={handleLogOut} className="btn bg-[#A31720]">Log Out</button></li>
+        </>
+            : <Link to="/login" className="btn bg-[#A31720]">Login</Link>
+        }
     </>
+
+
 
 
 
@@ -30,14 +51,12 @@ const Navbar = () => {
                     </Link>
 
                 </div>
-                <div className="navbar-center hidden lg:flex">
+                <div className="navbar-end hidden lg:flex mr-5">
                     <ul className="menu menu-horizontal px-1">
                         {navItems}
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <Link to="/login" className="btn bg-[#A31720]">Login</Link>
-                </div>
+
             </div>
 
         </div>
