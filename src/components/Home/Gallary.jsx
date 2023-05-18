@@ -2,6 +2,8 @@ import car1 from '../../assets/gallary/policecar.jpg';
 import car2 from '../../assets/gallary/firetruck.jpg';
 import car3 from '../../assets/gallary/sports.jpg';
 import car4 from '../../assets/gallary/truckstoy.jpg';
+import car5 from '../../assets/gallary/generaltrias.jpeg';
+import car6 from '../../assets/gallary/kidscar.jpg';
 
 const Gallary = () => {
 
@@ -65,23 +67,23 @@ const Gallary = () => {
                 </div>
                 <div className="text-center">
                     <div className="flex items-center justify-center w-200 h-200 mx-auto mb-4 bg-indigo-50">
-                        <img src={car1} alt="gallary" />
+                        <img src={car5} alt="gallary" />
                     </div>
-                    <h6 className="mb-2 font-semibold leading-5">Police Car</h6>
+                    <h6 className="mb-2 font-semibold leading-5">General Trias</h6>
                 </div>
                 <div className="text-center">
                     <div className="flex items-center justify-center w-200 h-200 mx-auto mb-4 bg-indigo-50">
-                        <img src={car1} alt="gallary" />
+                        <img src={car6} alt="gallary" />
                     </div>
-                    <h6 className="mb-2 font-semibold leading-5">Police Car</h6>
+                    <h6 className="mb-2 font-semibold leading-5">Kids Toy Car</h6>
                 </div>
             </div>
             <div className="text-center">
                 <a
-                    href="/"
+                    href="/alltoys"
                     className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-[#A1161F] hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                 >
-                    See More
+                    See All Toys
                     <span className="ml-1 -mr-2">
                         <svg
                             className="w-8 h-8 text-white"
