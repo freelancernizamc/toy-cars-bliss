@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import signup from '../../../public/signup.jpg';
-import { FaGoogle } from "react-icons/fa";
 import React, { useState } from 'react';
 import { useContext } from 'react';
 
 import { AuthContext } from '../../../src/Providers/AuthProviders';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const SignUp = () => {
     const { createUser } = useContext(AuthContext);
@@ -80,12 +80,8 @@ const SignUp = () => {
                                         <button className="btn bg-[#A31A25]" type="submit">Sign Up</button>
                                     </div>
                                 </form>
-                                <div className="divider">OR</div>
-                                <div className='text-center'>
-                                    <button className="btn btn-circle text-rose-700 bg-white text-center">
-                                        <FaGoogle />
-                                    </button>
-                                </div>
+
+                                <SocialLogin></SocialLogin>
                                 <p className='text-[#A31A25]'>Already Have an Account? <Link to='/login' className='font-bold underline'>Login</Link></p>
                             </div>
                         </div>

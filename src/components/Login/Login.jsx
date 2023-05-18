@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import login from '../../../public/login.jpg';
-import { FaGoogle } from "react-icons/fa";
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProviders'
 import { useNavigate, useLocation } from "react-router-dom";
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
@@ -61,12 +61,7 @@ const Login = () => {
                                         <button className="btn bg-[#A31A25]">Login</button>
                                     </div>
                                 </form>
-                                <div className="divider">OR</div>
-                                <div className='text-center'>
-                                    <button className="btn btn-circle text-rose-700 bg-white text-center">
-                                        <FaGoogle />
-                                    </button>
-                                </div>
+                                <SocialLogin></SocialLogin>
                                 <p className='text-[#A31A25]'>New to Cars Toy Bliss?<Link to='/signup' className='font-bold underline'>Sign Up</Link></p>
                             </div>
                         </div>
