@@ -13,7 +13,7 @@ const Categories = () => {
 
     const fetchToysData = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/toys");
+            const response = await axios.get("https://assignment-11-server-theta-wheat.vercel.app/toys");
             setToysData(response.data);
         } catch (error) {
             console.log(error);
@@ -22,7 +22,7 @@ const Categories = () => {
 
     const renderToysByCategory = (category) => {
         const categoryToys = toysData.filter((toy) => toy.category === category);
-        const chunks = chunkArray(categoryToys, 4); // Split the array into chunks of size 3
+        const chunks = chunkArray(categoryToys, 3); // Split the array into chunks of size 3
 
         return chunks.map((chunk, index) => (
             <TabPanel key={index}>
@@ -35,7 +35,7 @@ const Categories = () => {
                                 className="w-40 h-40 mb-4"
                             />
                             <p className="font-bold text-lg">{toy.toy_name}</p>
-                            <p className="text-gray-500">${toy.price}</p>
+                            <p className="text-gray-500">Price: ${toy.price}</p>
                             <p className="text-gray-500">Rating: {toy.rating}</p>
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
                                 View Details

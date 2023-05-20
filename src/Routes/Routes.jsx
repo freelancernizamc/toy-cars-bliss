@@ -7,6 +7,7 @@ import AddaToy from "../components/AddaToy/AddaToy";
 import Login from "../components/Login/Login";
 import SignUp from "../components/SignUp/SignUp";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
+import MyToys from "../components/MyToys/MyToys";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
             {
                 path: '/addatoy',
                 element: <AddaToy />,
+            },
+            {
+                path: '/mytoys',
+                element: <MyToys />
             },
             {
                 path: '/login',

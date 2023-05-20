@@ -23,6 +23,9 @@ const Navbar = () => {
         {user?.email ? <>
             <li><Link to='/addatoy'>Add A Toy</Link></li>
             <li><Link to='/mytoys'>My Toys</Link></li>
+            <div className="w-10 rounded-full tooltip tooltip-bottom " data-tip={user.displayName}>
+                <img src={user.photoURL} />
+            </div>
             <li><button onClick={handleLogOut} className="btn bg-[#A31720]">Log Out</button></li>
         </>
             : <Link to="/login" className="btn bg-[#A31720]">Login</Link>
