@@ -1,29 +1,43 @@
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { AuthProvider } from '../../Providers/AuthProviders';
+import AddaToy from './AddaToy';
+import AllToys from './AllToys';
+import MyToys from './MyToys';
 
-import './App.css'
+const App = () => {
+  const [toysData, setToysData] = useState([]);
 
-function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    fetchToysData();
+  }, []);
+
+  const fetchToysData = async () => {
+    try {
+      const response = await fetch(
+        'https://assignment-11-server-theta-wheat.vercel.app/toys'
+      );
+      const data = await response.json();
+      setToysData(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
-    <>
-      <div>
+    <Router>
+      <AuthProvider>
+        <Switch>
+          <Route exact path="/alltoys">
+            <AllToys toysData={toysData} />
+          </Route>
+          <Route exact path="/mytoys" component={MyToys} />
+          <Route exact path="/addatoy" component={AddaToy} />
+        </Switch>
+      </AuthProvider>
+    </Router>
+  );
+};
 
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+export default App;
 
-export default App

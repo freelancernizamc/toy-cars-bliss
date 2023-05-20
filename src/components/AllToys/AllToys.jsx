@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProviders';
+import sortBy from 'sort-by';
 
 const AllToys = () => {
-    const [toysData, setToysData] = useState([]);
+    const { toys } = useContext(AuthContext);
     const [sortBy, setSortBy] = useState('default');
-    const [searchQuery, setSearchQuery] = useState('');
+    const [toysData, setToysData] = useState([]);
 
     useEffect(() => {
         fetchToysData();
@@ -12,40 +15,19 @@ const AllToys = () => {
 
     const fetchToysData = async () => {
         try {
-            const response = await fetch("https://assignment-11-server-theta-wheat.vercel.app/toys");
-            const data = await response.json();
-            setToysData(data);
+            const response = await axios.get('https://assignment-11-server-theta-wheat.vercel.app/toys');
+            setToysData(response.data.slice(0, 20));
         } catch (error) {
-            console.error(error);
+            console.log(error);
         }
     };
-
 
     const handleSortByChange = (e) => {
         setSortBy(e.target.value);
     };
 
-
-
-
-
-
-    const filterToysBySearchQuery = (toys) => {
-        if (searchQuery === '') {
-            return toys;
-        } else {
-            return toys.filter((toy) =>
-                toy.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                toy.category.toLowerCase().includes(searchQuery.toLowerCase())
-            );
-        }
-    };
-
-
-
     const sortToys = (toys) => {
         switch (sortBy) {
-
             case 'priceAsc':
                 return toys.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
             case 'priceDesc':
@@ -55,34 +37,45 @@ const AllToys = () => {
         }
     };
 
-
-    const filteredToys = filterToysBySearchQuery(toysData);
-    const sortedToys = sortToys(filteredToys);
-
     return (
         <div className="overflow-x-auto w-full">
-
             <div className="flex items-center space-x-4 mb-4 mt-10">
-
-                <select value={sortBy} onChange={handleSortByChange} className="border rounded-md px-2 py-1 mt-5 font-bold">
+                <select
+                    value={sortBy}
+                    onChange={handleSortByChange}
+                    className="border rounded-md px-2 py-1 mt-5 font-bold"
+                >
                     <option value="default">Sort By</option>
-
                     <option value="priceAsc">Price: Low to High</option>
                     <option value="priceDesc">Price: High to Low</option>
                 </select>
             </div>
-
             <table className="table w-full">
-                {/* Table body */}
+                <thead>
+                    <tr>
+                        <th>
+                            <label>
+                                <input type="checkbox" className="checkbox" />
+                            </label>
+                        </th>
+                        <th>Seller Name</th>
+                        <th>Toy Name</th>
+                        <th>Image</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Available Quantity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
                 <tbody>
-                    {sortedToys.map((toy) => (
-                        <tr key={toy.id} toy={toy}>
+                    {sortToys(toysData).map((toy) => (
+                        <tr key={toy._id}>
                             <td>
                                 <label>
                                     <input type="checkbox" className="checkbox" />
                                 </label>
                             </td>
-                            <td>{toy.seller ? toy.sellerName : <span className="text-gray-500">N/A</span>}</td>
+                            <td>{toy.seller ? toy.seller : <span className="text-gray-500">N/A</span>}</td>
                             <td>{toy.toy_name}</td>
                             <td>
                                 <img className="w-20" src={toy.image} alt="Toy" />
@@ -91,7 +84,7 @@ const AllToys = () => {
                             <td>{toy.price}</td>
                             <td>{toy.available_quantity}</td>
                             <td>
-                                <Link to={`/toydetails/${toy.id}`} className="text-white btn bg-[#A1161F] hover:bg-[#45313A]">
+                                <Link to={`/toydetails/${toy._id}`} className="text-white btn bg-[#A1161F] hover:bg-[#45313A]">
                                     View Details
                                 </Link>
                             </td>

@@ -30,13 +30,16 @@ const AddaToy = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('https://assignment-11-server-theta-wheat.vercel.app/api/toys', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(toyData),
-            });
+            const response = await fetch(
+                'https://assignment-11-server-theta-wheat.vercel.app/api/toys',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(toyData),
+                }
+            );
 
             if (response.ok) {
                 const newToyData = {
@@ -51,10 +54,10 @@ const AddaToy = () => {
                     description: '',
                 };
 
-                setToys([...toys, toyData]);
+                setToys([...toys, toyData]); // Add the new toy data to the existing toys array
                 setToyData(newToyData);
 
-                navigate('/mytoys');
+                navigate('/alltoys'); // Redirect to the AllToys page
             } else {
                 console.error('Error saving the toy');
             }
@@ -62,6 +65,8 @@ const AddaToy = () => {
             console.error(error);
         }
     };
+
+
 
 
 
