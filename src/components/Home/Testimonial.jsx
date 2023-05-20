@@ -8,7 +8,7 @@ const Testimonial = () => {
 
                 <section className="mb-32 text-gray-800 text-center">
 
-                    <h2 className="text-5xl font-bold mb-12">Customer&apos;s Feedback</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-12">Customer&apos;s Feedback</h2>
 
                     <div className="grid md:grid-cols-3 gap-x-6 lg:gap-x-12">
                         <div className="mb-12 md:mb-0">

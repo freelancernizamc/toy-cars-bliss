@@ -38,10 +38,8 @@ const Categories = () => {
                             <p className="font-bold text-lg">{toy.toy_name}</p>
                             <p className="text-gray-500">Price: ${toy.price}</p>
                             <p className="text-gray-500">Rating: {toy.rating}</p>
-                            <Link to='/toydetails' className="text-white btn bg-[#A1161F] hover:bg-[#45313A]">View Details</Link>
-                            {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
-                                View Details
-                            </button> */}
+                            <Link to={`/toydetails/${toy.id}`} className="text-white btn bg-[#A1161F] hover:bg-[#45313A]">View Details</Link>
+
                         </div>
                     ))}
                 </div>
@@ -60,7 +58,7 @@ const Categories = () => {
 
     return (
         <div data-aos="fade-up" data-aos-anchor-placement="top-center">
-            <h2 className="text-5xl text-center font-bold mb-10">
+            <h2 className="text-3xl md:text-5xl text-center font-bold mb-10">
                 Shop By Categories
             </h2>
             {toysData.length > 0 && (

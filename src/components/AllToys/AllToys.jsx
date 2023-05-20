@@ -34,7 +34,7 @@ const AllToys = () => {
                         <th>Category</th>
                         <th>Price</th>
                         <th>Available Quantity</th>
-                        <th>View Details button</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,7 +54,7 @@ const AllToys = () => {
                             <td>{toy.price}</td>
                             <td>{toy.available_quantity}</td>
                             <td>
-                                <Link to='/toydetails' className="text-white btn bg-[#A1161F] hover:bg-[#45313A]">View Details</Link>
+                                <Link to={`/toydetails/${toy.id}`} className="text-white btn bg-[#A1161F] hover:bg-[#45313A]">View Details</Link>
                             </td>
                         </tr>
                     ))}
