@@ -57,7 +57,7 @@ const Categories = () => {
     };
 
     return (
-        <div>
+        <div data-aos="fade-up" data-aos-anchor-placement="top-center">
             <h2 className="text-5xl text-center font-bold mb-10">
                 Shop By Categories
             </h2>

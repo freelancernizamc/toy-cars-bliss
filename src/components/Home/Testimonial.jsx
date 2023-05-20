@@ -128,7 +128,7 @@ const Testimonial = () => {
                                 </li>
                             </ul>
                         </div>
-                        <div className="mb-0">
+                        <div className="mb-0" data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600">
                             <div className="flex justify-center mb-6">
                                 <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9).jpg" className="rounded-full shadow-lg w-32" />
                             </div>
