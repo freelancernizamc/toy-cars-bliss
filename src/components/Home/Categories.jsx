@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import axios from "axios";
 import "react-tabs/style/react-tabs.css";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
     const [tabIndex, setTabIndex] = useState(0);
@@ -37,9 +38,10 @@ const Categories = () => {
                             <p className="font-bold text-lg">{toy.toy_name}</p>
                             <p className="text-gray-500">Price: ${toy.price}</p>
                             <p className="text-gray-500">Rating: {toy.rating}</p>
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+                            <Link to='/toydetails' className="text-white btn bg-[#A1161F] hover:bg-[#45313A]">View Details</Link>
+                            {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
                                 View Details
-                            </button>
+                            </button> */}
                         </div>
                     ))}
                 </div>

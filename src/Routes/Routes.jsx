@@ -8,6 +8,8 @@ import Login from "../components/Login/Login";
 import SignUp from "../components/SignUp/SignUp";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import MyToys from "../components/MyToys/MyToys";
+import ToyDetails from "../components/ToyDetails/ToyDetails";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
             {
                 path: '/mytoys',
                 element: <MyToys />
+            },
+            {
+                path: '/toydetails',
+                element: <PrivateRoute><ToyDetails /></PrivateRoute>
             },
             {
                 path: '/login',

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const AllToys = () => {
     const [toysData, setToysData] = useState([]);
@@ -53,7 +54,7 @@ const AllToys = () => {
                             <td>{toy.price}</td>
                             <td>{toy.available_quantity}</td>
                             <td>
-                                <button className="btn bg-[#A1161F]">View Details</button>
+                                <Link to='/toydetails' className="text-white btn bg-[#A1161F] hover:bg-[#45313A]">View Details</Link>
                             </td>
                         </tr>
                     ))}
