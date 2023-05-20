@@ -12,7 +12,7 @@ const ToyDetails = () => {
 
     const fetchToyDetails = async () => {
         try {
-            const response = await fetch(`https://assignment-11-server-theta-wheat.vercel.app/toys/${toyId}`);
+            const response = await fetch(`https://assignment-11-server-theta-wheat.vercel.app/toy/${toyId}`);
             if (response.ok) {
                 const data = await response.json();
                 setToyData(data);
@@ -37,10 +37,25 @@ const ToyDetails = () => {
 
     return (
         <div>
-            <h2>Toy Details</h2>
-            <p>Toy ID: {toyData._id}</p>
-            <p>Name: {toyData.toy_name}</p>
-            {/* Add more details as needed */}
+            <h2 className='text-5xl text-center font-bold my-10'>Toy Details</h2>
+            <div className='flex items-center justify-around'>
+                <div className='w-1/2 ml-20'>
+                    <img src={toyData.image} alt='toy' />
+                </div>
+                <div className='w-1/2'>
+                    <p className='text-3xl font-bold'>Name: {toyData.toy_name}</p>
+                    <p className='text-xl font-bold'>Category: {toyData.category}</p>
+                    <p className='text-xl font-bold'>Seller Name: {toyData.seller}</p>
+                    <p className='text-xl font-bold'>Price: {toyData.price}</p>
+                    <p className='text-xl font-bold'>Rating: {toyData.rating}</p>
+                    <p className='text-xl font-bold'>Available Quantity: {toyData.available_quantity}</p>
+                    <p className='text-xl font-bold'>Description: {toyData.description}</p>
+
+                </div>
+            </div>
+
+
+
         </div>
     );
 };

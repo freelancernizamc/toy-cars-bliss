@@ -38,7 +38,7 @@ const Categories = () => {
                             <p className="font-bold text-lg">{toy.toy_name}</p>
                             <p className="text-gray-500">Price: ${toy.price}</p>
                             <p className="text-gray-500">Rating: {toy.rating}</p>
-                            <Link to={`/toydetails/${toy.id}`} className="text-white btn bg-[#A1161F] hover:bg-[#45313A]">View Details</Link>
+                            <Link to={`/toydetails/${toy._id}`} className="text-white btn bg-[#A1161F] hover:bg-[#45313A]">View Details</Link>
 
                         </div>
                     ))}
