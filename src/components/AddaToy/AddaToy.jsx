@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 const AddaToy = () => {
-    const { toys, setToys } = useContext(AuthContext);
+
+    const { toys, setToys, user } = useContext(AuthContext);
     const navigate = useNavigate();
     const [toyData, setToyData] = useState({
         pictureUrl: '',
