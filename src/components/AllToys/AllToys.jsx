@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 const AllToys = () => {
     const [toysData, setToysData] = useState([]);
+    const [sortBy, setSortBy] = useState('default');
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         fetchToysData();
@@ -18,27 +20,62 @@ const AllToys = () => {
         }
     };
 
+
+    const handleSortByChange = (e) => {
+        setSortBy(e.target.value);
+    };
+
+
+
+
+
+
+    const filterToysBySearchQuery = (toys) => {
+        if (searchQuery === '') {
+            return toys;
+        } else {
+            return toys.filter((toy) =>
+                toy.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                toy.category.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+        }
+    };
+
+
+
+    const sortToys = (toys) => {
+        switch (sortBy) {
+
+            case 'priceAsc':
+                return toys.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+            case 'priceDesc':
+                return toys.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+            default:
+                return toys;
+        }
+    };
+
+
+    const filteredToys = filterToysBySearchQuery(toysData);
+    const sortedToys = sortToys(filteredToys);
+
     return (
         <div className="overflow-x-auto w-full">
+
+            <div className="flex items-center space-x-4 mb-4 mt-10">
+
+                <select value={sortBy} onChange={handleSortByChange} className="border rounded-md px-2 py-1 mt-5 font-bold">
+                    <option value="default">Sort By</option>
+
+                    <option value="priceAsc">Price: Low to High</option>
+                    <option value="priceDesc">Price: High to Low</option>
+                </select>
+            </div>
+
             <table className="table w-full">
-                <thead>
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" className="checkbox" />
-                            </label>
-                        </th>
-                        <th>Seller</th>
-                        <th>Toy Name</th>
-                        <th>Image</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Available Quantity</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
+                {/* Table body */}
                 <tbody>
-                    {toysData.map((toy) => (
+                    {sortedToys.map((toy) => (
                         <tr key={toy.id} toy={toy}>
                             <td>
                                 <label>
@@ -54,7 +91,9 @@ const AllToys = () => {
                             <td>{toy.price}</td>
                             <td>{toy.available_quantity}</td>
                             <td>
-                                <Link to={`/toydetails/${toy.id}`} className="text-white btn bg-[#A1161F] hover:bg-[#45313A]">View Details</Link>
+                                <Link to={`/toydetails/${toy.id}`} className="text-white btn bg-[#A1161F] hover:bg-[#45313A]">
+                                    View Details
+                                </Link>
                             </td>
                         </tr>
                     ))}
