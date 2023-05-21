@@ -1,4 +1,4 @@
-import nizam from '../../../public/nizam.png'
+import nizam from '../../../src/assets/nizam.png'
 import Marquee from "react-fast-marquee";
 
 const Blogs = () => {

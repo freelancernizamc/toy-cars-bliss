@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import signup from '../../../public/signup.jpg';
+import signup from '../../../src/assets/signup.jpg';
 import React, { useState } from 'react';
 import { useContext } from 'react';
 

@@ -9,22 +9,27 @@ const AllToys = () => {
     const [sortBy, setSortBy] = useState('default');
     const [toysData, setToysData] = useState([]);
 
+
     useEffect(() => {
         fetchToysData();
-    }, []);
+    }, [toys]);
 
     const fetchToysData = async () => {
         try {
             const response = await axios.get('https://assignment-11-server-theta-wheat.vercel.app/toys');
             setToysData(response.data.slice(0, 20));
+
         } catch (error) {
             console.log(error);
         }
     };
 
+
     const handleSortByChange = (e) => {
         setSortBy(e.target.value);
     };
+
+
 
     const sortToys = (toys) => {
         switch (sortBy) {

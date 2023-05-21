@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import login from '../../../public/login.jpg';
+import login from '../../../src/assets/login.jpg';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProviders'
 import { useNavigate, useLocation } from "react-router-dom";

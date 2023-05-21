@@ -8,14 +8,14 @@ const AddaToy = () => {
     const { toys, setToys, user } = useContext(AuthContext);
     const navigate = useNavigate();
     const [toyData, setToyData] = useState({
-        pictureUrl: '',
-        name: '',
-        sellerName: '',
-        sellerEmail: '',
+        image: '',
+        toy_name: '',
+        seller: '',
+        email: '',
         category: '',
         price: '',
         rating: '',
-        availableQuantity: '',
+        available_quantity: '',
         description: '',
     });
 
@@ -43,21 +43,24 @@ const AddaToy = () => {
 
             if (response.ok) {
                 const newToyData = {
-                    pictureUrl: '',
-                    name: '',
-                    sellerName: '',
-                    sellerEmail: '',
+                    image: '',
+                    toy_name: '',
+                    seller: '',
+                    email: '',
                     category: '',
                     price: '',
                     rating: '',
-                    availableQuantity: '',
+                    available_quantity: '',
                     description: '',
                 };
 
-                setToys([...toys, toyData]); // Add the new toy data to the existing toys array
+                setToys([...toys, toyData]);
                 setToyData(newToyData);
 
-                navigate('/alltoys'); // Redirect to the AllToys page
+                // Update toyData state with newToyData values
+                setToyData(newToyData);
+
+                navigate('/mytoys');
             } else {
                 console.error('Error saving the toy');
             }
@@ -65,6 +68,7 @@ const AddaToy = () => {
             console.error(error);
         }
     };
+
 
 
 
@@ -80,8 +84,8 @@ const AddaToy = () => {
                             Picture URL:
                             <input
                                 type="text"
-                                name="pictureUrl"
-                                value={toyData.pictureUrl}
+                                name="image"
+                                value={toyData.image}
                                 onChange={handleChange}
                                 className="border rounded-md px-2 py-1 w-full"
                             />
@@ -90,8 +94,8 @@ const AddaToy = () => {
                             Name:
                             <input
                                 type="text"
-                                name="name"
-                                value={toyData.name}
+                                name="toy_name"
+                                value={toyData.toy_name}
                                 onChange={handleChange}
                                 className="border rounded-md px-2 py-1 w-full"
                             />
@@ -100,8 +104,8 @@ const AddaToy = () => {
                             Seller Name:
                             <input
                                 type="text"
-                                name="sellerName"
-                                value={toyData.sellerName}
+                                name="seller"
+                                value={toyData.seller}
                                 onChange={handleChange}
                                 className="border rounded-md px-2 py-1 w-full"
                             />
@@ -110,8 +114,8 @@ const AddaToy = () => {
                             Seller Email:
                             <input
                                 type="email"
-                                name="sellerEmail"
-                                value={toyData.sellerEmail}
+                                name="email"
+                                value={toyData.email}
                                 onChange={handleChange}
                                 className="border rounded-md px-2 py-1 w-full"
                             />
@@ -152,8 +156,8 @@ const AddaToy = () => {
                             Available Quantity:
                             <input
                                 type="text"
-                                name="availableQuantity"
-                                value={toyData.availableQuantity}
+                                name="available_quantity"
+                                value={toyData.available_quantity}
                                 onChange={handleChange}
                                 className="border rounded-md px-2 py-1 w-full"
                             />
