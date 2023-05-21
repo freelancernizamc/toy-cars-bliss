@@ -38,7 +38,7 @@ const ToyDetails = () => {
     return (
         <div>
             <h2 className='text-5xl text-center font-bold my-10'>Toy Details</h2>
-            <div className='flex items-center justify-around'>
+            <div className='md:flex items-center justify-between'>
                 <div className='w-1/2 ml-20'>
                     <img src={toyData.image} alt='toy' />
                 </div>
@@ -46,10 +46,11 @@ const ToyDetails = () => {
                     <p className='text-3xl font-bold'>Name: {toyData.toy_name}</p>
                     <p className='text-xl font-bold'>Category: {toyData.category}</p>
                     <p className='text-xl font-bold'>Seller Name: {toyData.seller}</p>
+                    <p className='text-xl font-bold'>Seller Email: {toyData.email}</p>
                     <p className='text-xl font-bold'>Price: {toyData.price}</p>
                     <p className='text-xl font-bold'>Rating: {toyData.rating}</p>
-                    <p className='text-xl font-bold'>Available Quantity: {toyData.available_quantity}</p>
-                    <p className='text-xl font-bold'>Description: {toyData.description}</p>
+                    <p className='text-xl font-bold mb-3'>Available Quantity: {toyData.available_quantity}</p>
+                    <p className='text-xl mb-5'>Description: {toyData.description}</p>
 
                 </div>
             </div>
