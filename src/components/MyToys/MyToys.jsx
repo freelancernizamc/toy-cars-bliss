@@ -22,6 +22,7 @@ const MyToys = () => {
     }
 
     const handleDelete = (id) => {
+        console.log(id);
         const proceed = window.confirm('Are you sure you want to delete it?');
         if (proceed) {
             fetch(`https://assignment-11-server-theta-wheat.vercel.app/api/toys/${id}`, {
@@ -30,11 +31,11 @@ const MyToys = () => {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    if (data.deletedCount > 0) {
-                        alert('Toy deleted successfully');
-                        const remaining = toyData.filter(d => d._id !== id);
-                        setToyData(remaining);
-                    }
+                    // if (data.deletedCount > 0) {
+                    alert('Toy deleted successfully');
+                    const remaining = toyData.filter(d => d._id !== id);
+                    setToyData(remaining);
+                    // }
                 })
                 .catch(error => {
                     console.error('Error deleting toy:', error);
@@ -75,7 +76,7 @@ const MyToys = () => {
                                 <td className="px-4 py-2">{toy.rating}</td>
                                 <td className="px-4 py-2">{toy.description}</td>
                                 <td className="px-4 py-2">
-                                    <button onClick={handleDelete} className="btn">Delete</button>
+                                    <button onClick={() => handleDelete(toy._id)} className="btn">Delete</button>
                                 </td>
                                 <td className="px-4 py-2">
                                     <button className="btn">Update</button>
